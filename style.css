@@ -1,0 +1,692 @@
+/* ==========================================
+   RESET & VARIABLES (Dark Luxury Theme)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+    --bg-main: linear-gradient(135deg, #020617 0%, #0f051d 50%, #020617 100%);
+    --panel-bg: rgba(15, 23, 42, 0.45);
+    --panel-border: rgba(168, 85, 247, 0.12);
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dark: #64748b;
+    --card-bg: rgba(30, 41, 59, 0.2);
+    --card-border: rgba(255, 255, 255, 0.03);
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   HEADER / NAVBAR
+   ========================================== */
+.navbar {
+    border-bottom: 1px solid var(--panel-border);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-box {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(45deg, var(--accent-purple), var(--accent-pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
+}
+
+.logo-box i {
+    color: white;
+    font-size: 0.875rem;
+}
+
+.brand-name {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to right, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #c084fc;
+    background: rgba(168, 85, 247, 0.1);
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.pulse-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: #34d399;
+    position: relative;
+}
+
+.pulse-dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #34d399;
+    border-radius: 50%;
+    animation: ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+    75%, 100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ==========================================
+   MAIN LAYOUT CONTAINER
+   ========================================== */
+.main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    flex-grow: 1;
+}
+
+@media (min-width: 1024px) {
+    .main-container {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* ==========================================
+   LEFT PANEL: FILTER & PLAYLIST
+   ========================================== */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.search-filter-bar {
+    background: var(--panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 1.25rem;
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 640px) {
+    .search-filter-bar {
+        flex-direction: row;
+    }
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .search-wrapper {
+        width: 18rem;
+    }
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dark);
+    font-size: 0.875rem;
+}
+
+.search-input {
+    width: 100%;
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.85rem;
+    padding: 0.65rem 1rem 0.65rem 2.5rem;
+    color: var(--text-main);
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: rgba(168, 85, 247, 0.4);
+    background: rgba(2, 6, 23, 0.8);
+}
+
+.category-capsules {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+}
+
+.category-capsules::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .category-capsules {
+        width: auto;
+        padding-bottom: 0;
+    }
+}
+
+.category-btn {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 0.5rem 1.15rem;
+    border-radius: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.category-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+}
+
+.category-btn.active {
+    background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+/* ==========================================
+   BEAUTIFIED ULTIMATE PLAYLIST CONTAINER
+   ========================================== */
+.playlist-panel {
+    background: rgba(2, 6, 23, 0.15);
+    border-radius: 1.25rem;
+    padding: 0.5rem 0.25rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-h: 460px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168, 85, 247, 0.2) transparent;
+}
+
+.playlist-panel::-webkit-scrollbar {
+    width: 5px;
+}
+.playlist-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+.playlist-panel::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.2);
+    border-radius: 9999px;
+}
+
+/* Hide old header text as we are moving to standard structural cards */
+.playlist-header {
+    display: none; 
+}
+
+/* Luxury Track Premium Container Card */
+.track-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    margin-bottom: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(168, 85, 247, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* State management modifier style when track is selected */
+.track-card.active {
+    background: rgba(168, 85, 247, 0.08);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1), inset 0 0 12px rgba(168, 85, 247, 0.05);
+}
+
+.track-card-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.card-index {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    width: 1.2rem;
+    text-align: center;
+}
+
+.track-card.active .card-index {
+    color: var(--accent-purple);
+    font-weight: bold;
+}
+
+.card-img-wrapper {
+    position: relative;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hover play icon over artwork overlay */
+.card-artwork-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.track-card:hover .card-artwork-overlay {
+    opacity: 1;
+}
+
+.card-artwork-overlay i {
+    color: white;
+    font-size: 0.85rem;
+}
+
+.track-card.active .card-artwork-overlay {
+    opacity: 1;
+    background: rgba(168, 85, 247, 0.4);
+}
+
+/* Custom soundwave graphic equalizer animation bar wrapper */
+.card-equalizer {
+    display: none;
+    gap: 2px;
+    align-items: flex-end;
+    width: 12px;
+    height: 12px;
+}
+
+.track-card.active .card-equalizer {
+    display: flex;
+}
+
+.track-card.active .card-artwork-overlay i {
+    display: none;
+}
+
+.eq-bar {
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    animation: bounce EQ_TIME ease-in-out infinite alternate;
+}
+.eq-bar:nth-child(1) { animation-duration: 0.3s; }
+.eq-bar:nth-child(2) { animation-duration: 0.4s; }
+.eq-bar:nth-child(3) { animation-duration: 0.25s; }
+
+@keyframes bounce {
+    0% { height: 20%; }
+    100% { height: 100%; }
+}
+
+.card-meta-details {
+    min-width: 0;
+}
+
+.card-title {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.15rem;
+}
+
+.track-card.active .card-title {
+    color: #dfc5fe;
+}
+
+.card-artist {
+    font-size: 0.785rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-card-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-left: 1rem;
+}
+
+/* Luxury Glass Capsule Pill tags for category names */
+.card-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    display: none; /* hidden on small screen assets */
+}
+
+@media (min-width: 480px) {
+    .card-badge { display: inline-block; }
+}
+
+.track-card.active .card-badge {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.2);
+    color: #c084fc;
+}
+
+.card-duration {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--text-dark);
+}
+
+.track-card:hover .card-duration, .track-card.active .card-duration {
+    color: var(--text-main);
+}
+
+/* ==========================================
+   RIGHT PANEL: ARTWORK FOCUS DOCK
+   ========================================== */
+.right-panel {
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), #020617);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.artwork-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.artwork-frame {
+    position: relative;
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+    .artwork-frame { width: 16rem; height: 16rem; }
+}
+
+.artwork-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.focus-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    text-align: center;
+    padding: 0 0.5rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.focus-artist {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+/* Progress Slider Layer */
+.timeline-block {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.time-stamps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    margin-bottom: 0.375rem;
+    font-family: monospace;
+}
+
+/* ==========================================
+   BOTTOM CONTROLLER DOCK
+   ========================================== */
+.control-dock {
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 50;
+}
+
+@media (min-width: 640px) {
+    .control-dock {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+.dock-meta-side {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .dock-meta-side { width: 25%; min-width: 200px; }
+}
+
+.dock-thumb {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dock-text { overflow: hidden; }
+.dock-track-title { font-size: 0.875rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dock-track-artist { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.dock-core-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .dock-core-controls { width: 50%; }
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    cursor: pointer;
+}
+
+.nav-btn:hover { color: white; }
+
+.master-play-btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: white;
+    color: #020617;
+    border: none;
+    font-size: 1.125rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.master-play-btn:hover {
+    background: var(--accent-purple);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+.master-play-btn:active { transform: scale(0.95); }
+
+.master-play-btn i.fa-play { margin-left: 0.15rem; }
+
+.dock-volume-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .dock-volume-side { width: 25%; }
+}
+
+.dock-volume-side i { color: var(--text-muted); font-size: 0.875rem; width: 1rem; }
+
+/* ==========================================
+   NATIVE RANGE BAR CUSTOMIZATIONS
+   ========================================== */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+    background: var(--accent-purple);
+}
+
+.volume-slider { width: 6rem !important; }
+
+/* Spin and pause states for vinyl album art wrapper components */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.artwork-spinning { animation: spin 25s linear infinite; }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Music Player | Rhombix Internship</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-logo">
+            <div class="logo-box">
+                <i class="fa-solid fa-waveform animate-pulse"></i>
+            </div>
+            <span class="brand-name">Xero Beats</span>
+        </div>
+        <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span>Premium Product</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="left-panel">
+            
+            <div class="search-filter-bar">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Search tracks or artists..." class="search-input">
+                </div>
+                <div class="category-capsules" id="categoryCapsules">
+                    <button class="category-btn active" data-category="all">All Tracks</button>
+                    <button class="category-btn" data-category="Synthwave">Synthwave</button>
+                    <button class="category-btn" data-category="Lo-Fi">Lo-Fi</button>
+                    <button class="category-btn" data-category="Cinematic">Cinematic</button>
+                </div>
+            </div>
+
+            <div class="playlist-panel">
+                <div class="playlist-header">
+                    <span class="col-idx">#</span>
+                    <span class="col-meta">Title</span>
+                    <span class="col-cat">Category</span>
+                    <span class="col-dur">Duration</span>
+                </div>
+                <div id="playlistTracks"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="artwork-container">
+                <div class="artwork-frame">
+                    <img id="currentArtwork" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500" alt="Album Cover" class="artwork-img">
+                </div>
+                <h2 id="currentTitle" class="focus-title">Select a Track</h2>
+                <p id="currentArtist" class="focus-artist">Artist Details</p>
+            </div>
+
+            <div class="timeline-block">
+                <div class="time-stamps">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalDuration">0:00</span>
+                </div>
+                <input type="range" id="progressBar" min="0" value="0">
+            </div>
+
+            <audio id="audioElement"></audio>
+        </div>
+    </main>
+
+    <footer class="control-dock">
+        <div class="dock-meta-side">
+            <img id="dockArtwork" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=120" alt="" class="dock-thumb">
+            <div class="dock-text">
+                <p id="dockTitle" class="dock-track-title">No Track Selected</p>
+                <p id="dockArtist" class="dock-track-artist">Choose from active playlist</p>
+            </div>
+        </div>
+
+        <div class="dock-core-controls">
+            <div class="control-buttons">
+                <button id="prevBtn" class="nav-btn"><i class="fa-solid fa-backward-step"></i></button>
+                <button id="playBtn" class="master-play-btn">
+                    <i class="fa-solid fa-play" id="playIcon"></i>
+                </button>
+                <button id="nextBtn" class="nav-btn"><i class="fa-solid fa-forward-step"></i></button>
+            </div>
+        </div>
+
+        <div class="dock-volume-side">
+            <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
+            <input type="range" id="volumeBar" min="0" max="1" step="0.05" value="0.7" class="volume-slider">
+        </div>
+    </footer>
+
+    <script src="tracks.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
